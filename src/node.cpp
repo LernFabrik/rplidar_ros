@@ -346,6 +346,7 @@ int main(int argc, char * argv[]) {
     LidarScanMode current_scan_mode;
     if (scan_mode.empty()) {
         op_result = drv->startScan(false /* not force scan */, true /* use typical scan mode */, 0, &current_scan_mode);
+        ROS_INFO("SCAN EMPTY - SHOULD START WITH TYPICAL SCAN MODE");
     } else {
         std::vector<LidarScanMode> allSupportedScanModes;
         op_result = drv->getAllSupportedScanModes(allSupportedScanModes);
@@ -368,6 +369,7 @@ int main(int argc, char * argv[]) {
                 op_result = SL_RESULT_OPERATION_FAIL;
             } else {
                 op_result = drv->startScanExpress(false /* not force scan */, selectedScanMode, 0, &current_scan_mode);
+                ROS_INFO("STARTED SCAN EXPRESS WITH SELECTED SCAN MODE");
             }
         }
     }
